@@ -27,7 +27,7 @@ Clone this repo and run:
 docker-compose up -d
 ```
 
-### 2️⃣ Flash the Firmware
+### 2 Flash the Firmware
 Open `firmware/main.ino` in Arduino IDE and configure your local environment:
 
 * **Network Setup:**
@@ -39,31 +39,13 @@ Open `firmware/main.ino` in Arduino IDE and configure your local environment:
 * **Board Settings:**
     * Select **ESP32S3 Dev Module**.
     * **USB CDC On Boot:** `Enabled` (Crucial for Serial Monitor).
-* **Upload:** Connect the board and hit the upload arrow.
 
-### 3️⃣ Data Flow Validation
+### 3 Data Flow Validation
 * **Serial Monitor:** Set to `115200` baud. Look for `WiFi Connected` and `MQTT Published`.
 * **Node-RED:** Visit `http://localhost:1880`. Verify the MQTT-in node shows "connected".
 * **InfluxDB:** Access `http://localhost:8086`. Check if the `IoT_Bucket` is populating.
 
 ---
 
-## 📊 Visualizations
+## 4 Visualizations
 Access the control center at `http://localhost:3000` (Default: `admin/admin`).
-
-* **Proximity Monitoring:** Real-time Gauge showing object distance.
-* **Environmental Trends:** Time-series graphs for Temperature/Humidity.
-* **Alarm Logic:** Visual indicators turn **RED** when objects are closer than 10cm or thresholds are breached.
-
----
-
-## 📂 Project Structure
-```text
-├── docker/
-│   └── docker-compose.yml  # Container orchestration (Mosquitto, Node-RED, InfluxDB, Grafana)
-├── docs/
-│   ├── wiring_diagram.png  # Hardware pinout & sensor connections
-│   └── lab_guide.pdf       # Step-by-step educational guide
-├── firmware/
-│   └── main.ino           # ESP32-S3 C++ firmware (Production-ready)
-└── README.md              # Project documentation
