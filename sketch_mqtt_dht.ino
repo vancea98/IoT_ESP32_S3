@@ -3,18 +3,18 @@
 #include <ArduinoJson.h>
 #include "DHT.h"
 
-// --- Config Hardware ---
-#define DHTPIN 4
+// --- Config Hardware --- // GPIO
+#define DHTPIN 4 
 #define DHTTYPE DHT22
 #define TRIG_PIN 16
 #define ECHO_PIN 18
 
-// --- Config Retea ---
+// --- Config Network ---
 const char ssid[] = "wifi";
 const char pass[] = "password";
 const char mqtt_broker[] = "192.168.x.xxx"; // IPv4 (ipconfig)
 const int mqtt_port = 1883;
-const char topic[] = "casa/senzori/camera1";
+const char topic[] = "home/sensors/room1";
 
 DHT dht(DHTPIN, DHTTYPE);
 WiFiClient net;
