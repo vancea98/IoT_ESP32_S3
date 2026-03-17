@@ -10,9 +10,9 @@
 #define ECHO_PIN 18
 
 // --- Config Retea ---
-const char ssid[] = "MERCUSYS_DAF7";
-const char pass[] = "Tahfkc*74";
-const char mqtt_broker[] = "192.168.1.101"; // IP-ul laptopului tau (ipconfig)
+const char ssid[] = "wifi";
+const char pass[] = "password";
+const char mqtt_broker[] = "192.168.x.xxx"; // IP-ul laptopului tau (ipconfig)
 const int mqtt_port = 1883;
 const char topic[] = "casa/senzori/camera1";
 
