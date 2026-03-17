@@ -49,3 +49,5 @@ Open `firmware/main.ino` in Arduino IDE and configure your local environment:
 ## 4. Visualizations
 * **InfluxDB:** Access `http://localhost:8086`. Check if the `IoT_Bucket` is populating.
 * **Grafana:** Access `[http://localhost:8086](http://localhost:3000)` (Default: `admin/admin`).
+
+https://docs.google.com/presentation/d/1fPblXeLdnoNRxVxsVxKLhJYEb5yJb-3fwybn7R1bh7I/edit?slide=id.g3d0754dd947_3_36#slide=id.g3d0754dd947_3_36
