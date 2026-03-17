@@ -41,9 +41,8 @@ Open `firmware/main.ino` in Arduino IDE and configure your local environment:
     * **USB CDC On Boot:** `Enabled` (Crucial for Serial Monitor).
 
 ## 3. Data Flow Validation
-* **Serial Monitor:** Set to `115200` baud. Look for `WiFi Connected` and `MQTT Published`.
-* **Node-RED:** Visit `http://localhost:1880`. Verify the MQTT-in node shows "connected".
-* **InfluxDB:** Access `http://localhost:8086`. Check if the `IoT_Bucket` is populating.
+* **Serial Monitor:** Set to `115200` baud.
+* **Node-RED:** Visit `http://localhost:1880`.
 
 ---
 
