@@ -1,2 +1,3 @@
 # IoT_ESP32_S3
-Temp, Hum, Dist
+1. clone repo
+2. run "docker-compose up -d"
