@@ -1,0 +1,133 @@
+[
+    {
+        "id": "11034a6867a89c80",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7b6d30832bdf4010",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "3f02be3b76b8c96b",
+        "type": "influxdb",
+        "hostname": "http://influxdb",
+        "port": 8086,
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "d8bfd8949db23c05",
+        "type": "mqtt in",
+        "z": "11034a6867a89c80",
+        "name": "mqtt_in",
+        "topic": "casa/senzori/camera1",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "7b6d30832bdf4010",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "78ef34a270039c1f"
+            ]
+        ]
+    },
+    {
+        "id": "cfda4c38cb6f8b0f",
+        "type": "debug",
+        "z": "11034a6867a89c80",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e8ce2ce37d754c96",
+        "type": "influxdb out",
+        "z": "11034a6867a89c80",
+        "influxdb": "3f02be3b76b8c96b",
+        "name": "",
+        "measurement": "measurements",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "IoT_Organization",
+        "bucket": "IoT_Bucket",
+        "x": 680,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "78ef34a270039c1f",
+        "type": "function",
+        "z": "11034a6867a89c80",
+        "name": "Transform to Influx format",
+        "func": "// Mapăm datele pentru baza de date\nmsg.payload = {\n    temperatura: msg.payload.temp,\n    umiditate: msg.payload.hum,\n    distanta: msg.payload.dist\n};\n// Measurement-ul este \"tabelul\" unde se salvează\nmsg.measurement = \"senzori_camera\"; \nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "cfda4c38cb6f8b0f",
+                "e8ce2ce37d754c96"
+            ]
+        ]
+    }
+]

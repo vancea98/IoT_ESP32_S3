@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # 1. MQTT Broker (Mosquitto) - Postașul
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+
+  # 2. Node-RED - Creierul logic
+  nodered:
+    image: nodered/node-red:latest
+    container_name: nodered
+    ports:
+      - "1880:1880"
+    depends_on:
+      - mosquitto
+    volumes:
+      - ./node-red-data:/data
+
+  # 3. InfluxDB - Baza de date (Arhiva)
+  influxdb:
+    image: influxdb:2.7
+    container_name: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - ./influxdb-data:/var/lib/influxdb2
+
+  # 4. Grafana - Dashboard-ul (Interfața)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
