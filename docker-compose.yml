@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # 1. MQTT Broker (Mosquitto) - Postașul
+  # 1. MQTT Broker (Mosquitto)
   mosquitto:
     image: eclipse-mosquitto:latest
     container_name: mosquitto
@@ -13,7 +13,7 @@ services:
       - ./mosquitto/data:/mosquitto/data
       - ./mosquitto/log:/mosquitto/log
 
-  # 2. Node-RED - Creierul logic
+  # 2. Node-RED
   nodered:
     image: nodered/node-red:latest
     container_name: nodered
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./node-red-data:/data
 
-  # 3. InfluxDB - Baza de date (Arhiva)
+  # 3. InfluxDB
   influxdb:
     image: influxdb:2.7
     container_name: influxdb
@@ -33,7 +33,7 @@ services:
     volumes:
       - ./influxdb-data:/var/lib/influxdb2
 
-  # 4. Grafana - Dashboard-ul (Interfața)
+  # 4. Grafana
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
