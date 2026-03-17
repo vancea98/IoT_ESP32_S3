@@ -25,6 +25,7 @@ The system follows a 4-tier architecture:
 Clone this repo and run:
 ```bash
 docker-compose up -d
+```
 
 ### 2️⃣ Flash the Firmware
 Open `firmware/main.ino` in Arduino IDE and configure your local environment:
