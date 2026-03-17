@@ -12,7 +12,7 @@
 // --- Config Retea ---
 const char ssid[] = "wifi";
 const char pass[] = "password";
-const char mqtt_broker[] = "192.168.x.xxx"; // IP-ul laptopului tau (ipconfig)
+const char mqtt_broker[] = "192.168.x.xxx"; // IPv4 (ipconfig)
 const int mqtt_port = 1883;
 const char topic[] = "casa/senzori/camera1";
 
@@ -60,14 +60,14 @@ void loop() {
   mqttClient.poll();
 
   unsigned long now = millis();
-  if (now - lastMsg > 5000) { // Trimitem la 5 secunde
+  if (now - lastMsg > 5000) { // Sending every 5 seconds
     lastMsg = now;
 
     float h = dht.readHumidity();
     float t = dht.readTemperature();
     float d = getDistance();
 
-    // Creare JSON robust
+    // JSON
     StaticJsonDocument<200> doc;
     doc["temp"] = isnan(t) ? -99 : t;
     doc["hum"] = isnan(h) ? -99 : h;
@@ -76,7 +76,7 @@ void loop() {
     char buffer[256];
     serializeJson(doc, buffer);
 
-    // Publicare
+    // Publish
     mqttClient.beginMessage(topic);
     mqttClient.print(buffer);
     mqttClient.endMessage();
